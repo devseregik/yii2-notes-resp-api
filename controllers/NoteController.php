@@ -15,6 +15,18 @@ use yii\web\NotFoundHttpException;
  *
  * Notes REST API.
  *
+ * ~
+ * Usage:
+ *      GET /api/notes - Get all notes.
+ *      GET /api/notes?p={num} - Get all notes by page {num}.
+ *
+ *      POST /api/notes - Create new note.
+ *
+ *      PUT, PATCH /api/notes/{id} - Update note by {id} with body {title, text, published_at}.
+ *
+ *      DELETE /api/notes/{id} - Delete note by {id}.
+ * ~
+ *
  * @package app\controllers
  * @author  Sergey Gubarev <devseregik@gmail.com>
  */

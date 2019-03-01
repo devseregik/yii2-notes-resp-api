@@ -4,6 +4,7 @@ namespace app\models\Note;
 
 use app\models\User;
 use cornernote\softdelete\SoftDeleteBehavior;
+use yii\base\InvalidValueException;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -106,11 +107,16 @@ class Note extends \yii\db\ActiveRecord
      * Handler on beforeValidate.
      *
      * @return bool
+     *
+     * @throws \yii\base\InvalidValueException
      */
     public function beforeValidate(): bool
     {
         if (parent::beforeValidate()) {
             $this->published_at = is_numeric($this->published_at) ? $this->published_at : strtotime($this->published_at);
+            if (!$this->published_at) {
+                throw new InvalidValueException('Invalid published date.');
+            }
             return true;
         }
         return false;
